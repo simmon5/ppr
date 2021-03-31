@@ -53,9 +53,7 @@ int main( void )
     
     
         scanf("%s", &buffer);
-    int index = sizeof(buffer);
-    printf("%s", &buffer);
-    buffer[index+1] = EOF; 
+    buffer[strlen(buffer)] = '\0';
         n = write( fd, buffer, sizeof( buffer ) );
                 if( n < 0 ) 	// sprawdzamy, czy wystapil blad ....
                     perror( "write()" );
