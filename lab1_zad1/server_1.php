@@ -43,15 +43,11 @@
 		
 		# przekazujemy informacje o biezacym czasie  - - - - - - - - - -
 		$msg = ""; 
-        while( $rcv = socket_read( $client, 1024) ){ 
+        while( $rcv = socket_read( $client, 2) ){ 
             $msg .= $rcv;
         }
         $hex = '';
-        for ($i=0; $i<strlen($msg); $i++){
-            $ord = ord($msg[$i]);
-            $hexCode = dechex($ord);
-            $hex .= substr('0'.$hexCode, -2);
-        }
+        $hex = bin2hex($msg);
 		print "$hex\n";
 		socket_close( $client );
 	}

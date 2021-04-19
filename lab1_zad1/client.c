@@ -38,7 +38,7 @@ int main( void )
     /* zapelniamy strukture zerami (inicjujemy) ***********************/
     bzero((char *) &serv_addr, sizeof(serv_addr));
     bzero( buffer, 256 );
-    
+    printf("%s", &buffer);
     
     /* przypisujemy parametry *****************************************/
     serv_addr.sin_family = AF_INET;			// typ gniazda 
@@ -52,14 +52,16 @@ int main( void )
         return error( 3, "connect()" );
     
     
-        scanf("%s", &buffer);
-    buffer[strlen(buffer)] = '\0';
-        n = write( fd, buffer, sizeof( buffer ) );
+    printf("%s", &buffer);
+    //int x = scanf("%s", &buffer);
+    int x = read(0,buffer,256);
+    //buffer[strlen(buffer)] = '\0';
+        n = write( fd, buffer, x);
                 if( n < 0 ) 	// sprawdzamy, czy wystapil blad ....
                     perror( "write()" );
     
 	/* zerujemy bufor *************************************************/
-        bzero( buffer, 256 );
+       // bzero( buffer, 256 );
     
     /* odczytujemy wiadomosc ******************************************/
     /*n = read( fd, buffer, 255 );
